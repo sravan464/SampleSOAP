@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC  "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+			 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+ 
+<hibernate-mapping package="com.rhpsoft.hibernate.core.beans">
+	  <class name="Regions" table="REGIONS" >
+			<id name="regionId" column="REGION_ID">
+						<!-- Takes max value from Regions table and increment by 1 -->
+						 <generator class="increment"></generator>
+			</id>
+           <property name="regionName" column="REGION_NAME"></property>
+           
+           <!-- Example for collections Set -->
+           <!-- 
+            <set name="countrySet"  table="COUNTRY" cascade="all"  inverse="true"  fetch="subselect">
+          		<key column="REGION_ID"   not-null="true"></key>
+          		<one-to-many  class="Country" />
+           </set>
+           
+           
+           -->
+
+			<set name="countrySet"  cascade="all">
+          		<key column="REGION_ID"  not-null="true"></key>
+          		<one-to-many  class="Country" />
+           </set>
+
+          <!-- 
+           <set name="countrySet"  cascade="all"  inverse="true" lazy="extra"  fetch="subselect">
+          		<key column="REGION_ID"  not-null="true"></key>
+          		<one-to-many  class="Country" />
+           </set>
+          
+           
+           <set name="countrySet"  cascade="all"  inverse="true"  fetch="join" >
+          		<key column="REGION_ID"  not-null="true"></key>
+          		<one-to-many  class="Country" />
+           </set>
+           
+           
+            -->
+          
+          
+     
+           
+           
+          
+           
+          <!-- Example for Collections List -->
+          
+          
+		   <!-- 
+			<list name="countryList" inverse="true" cascade="save-update"  >
+          		<key column="REGION_ID" ></key>
+          		<index column="INSERT_ORDER"></index>
+          		<one-to-many  class="Country" />
+           </list>
+			 -->
+		
+		           
+		   <!-- Example for Collections bag -->
+          <!-- 
+          <bag name="countryList" cascade="all">
+          		<key column="REGION_ID"></key>
+          		<one-to-many  class="Country" />
+          </bag>
+		    -->       
+			
+			  <!-- Example for Collections Array -->
+			  <!-- 
+			 <array name="countryArray" cascade="all">
+          		<key column="REGION_ID"></key>
+          		<index column="INSERT_ORDER"></index>
+          		<one-to-many  class="Country" />
+          </array>          
+           -->
+           
+          <!-- Example for Collections Map -->
+          <!-- 
+           <map  name="countryMap" cascade="all">
+          		<key column="REGION_ID"></key>
+          		<index column="MAP_ORDER" type="string"></index>
+          		<one-to-many  class="Country" />
+          </map> 
+           -->
+          
+      </class>
+</hibernate-mapping>

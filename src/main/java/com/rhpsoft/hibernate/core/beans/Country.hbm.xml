@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC  "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+			 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+ 
+<hibernate-mapping package="com.rhpsoft.hibernate.core.beans">
+	  <class name="Country" table="COUNTRIES"  >
+			<id name="countryId" column="COUNTRY_ID">
+						<!-- Takes value from Country object -->
+						 <generator class="assigned"></generator>
+			</id>
+            
+           <property name="countryName" column="COUNTRY_NAME"></property>
+           
+           <!--
+             <many-to-one name="region" class="Regions"  >
+    				<column name="REGION_ID" not-null="true"></column>
+    		</many-to-one>        
+         -->
+         <many-to-one name="region" class="com.rhpsoft.hibernate.core.beans.Regions"  
+ 						column="REGION_ID"   cascade="all"   unique="true"  not-null="true">
+			</many-to-one>
+		 	
+      </class>
+</hibernate-mapping>
